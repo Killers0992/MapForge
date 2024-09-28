@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapForge", "MapForge\MapForge.csproj", "{15FAF6A1-A3AC-41AE-847A-1A685B8D003A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapForge.API", "MapForge.API\MapForge.API.csproj", "{C8262CCB-2742-48C2-A660-F46A3D769EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapForge.Editor", "MapForge.Editor\MapForge.Editor.csproj", "{70285B07-8B28-4179-85F9-BFADFD801AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15FAF6A1-A3AC-41AE-847A-1A685B8D003A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FAF6A1-A3AC-41AE-847A-1A685B8D003A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FAF6A1-A3AC-41AE-847A-1A685B8D003A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FAF6A1-A3AC-41AE-847A-1A685B8D003A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8262CCB-2742-48C2-A660-F46A3D769EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8262CCB-2742-48C2-A660-F46A3D769EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8262CCB-2742-48C2-A660-F46A3D769EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8262CCB-2742-48C2-A660-F46A3D769EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70285B07-8B28-4179-85F9-BFADFD801AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70285B07-8B28-4179-85F9-BFADFD801AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70285B07-8B28-4179-85F9-BFADFD801AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70285B07-8B28-4179-85F9-BFADFD801AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25437F0A-3639-4D33-9453-D3214A950F33}
+	EndGlobalSection
+EndGlobal

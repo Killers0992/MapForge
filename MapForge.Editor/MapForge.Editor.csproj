@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputType>Library</OutputType>
+
+		<LangVersion>latest</LangVersion>
+
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;D:\Unity Projects\2021\MapForgeEditor\Assets\MapForge\Editor&quot;" />
+	</Target>
+	
+	<ItemGroup>
+	  <Reference Include="UnityEditor">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AnimationModule">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.AssetBundleModule">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.CoreModule">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.IMGUIModule">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+	  </Reference>
+	  <Reference Include="UnityEngine.PhysicsModule">
+	    <HintPath>..\..\..\Editors\2021.3.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\MapForge.API\MapForge.API.csproj" />
+	</ItemGroup>
+</Project>
