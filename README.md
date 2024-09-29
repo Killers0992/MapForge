@@ -22,12 +22,12 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
 
 1. Download latest plugin ``MapForge.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForge-exiled.dll)
 2. Put ``MapForge.dll`` in folder
-  - Windows - ``%appdata%/Exiled/plugins``
-  - Linux - ``.config/Exiled/plugins``
+  - Windows - ``%appdata%/EXILED/Plugins``
+  - Linux - ``.config/EXILED/Plugins``
 3. Download latest dependency ``MapForgeAPI.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForgeAPI.dll)
 4. Put ``MapForgeAPI.dll`` in folder
-  - Windows - ``%appdata%/Exiled/dependencies``
-  - Linux - ``.config/Exiled/dependencies``
+  - Windows - ``%appdata%/EXILED/Plugins/dependencies``
+  - Linux - ``.config/EXILED/Plugins/dependencies``
 5. Launch SCP: SL server.
 </details>
 
