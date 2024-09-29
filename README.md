@@ -32,4 +32,4 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
 </details>
 
 # Usage
-If you want to start using MapForge for map customization check wiki page
+If you want to start using MapForge for map customization check [wiki page](https://github.com/Killers0992/MapForge/wiki)
