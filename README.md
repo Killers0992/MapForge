@@ -11,7 +11,7 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
 2. Put ``MapForge.dll`` in folder
   - Windows - ``%appdata%/SCP Secret Laboratory/PluginAPI/plugins/global``
   - Linux - ``.config/SCP Secret Laboratory/PluginAPI/plugins/global``
-3. Download latest dependency ``MapForgeAPI.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForgeAPI.dll)
+3. Download latest dependency ``MapForgeAPI.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForge.API.dll)
 4. Put ``MapForgeAPI.dll`` in folder
   - Windows - ``%appdata%/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies``
   - Linux - ``.config/SCP Secret Laboratory/PluginAPI/plugins/global/dependencies``
@@ -24,7 +24,7 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
 2. Put ``MapForge.dll`` in folder
   - Windows - ``%appdata%/EXILED/Plugins``
   - Linux - ``.config/EXILED/Plugins``
-3. Download latest dependency ``MapForgeAPI.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForgeAPI.dll)
+3. Download latest dependency ``MapForgeAPI.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForge.API.dll)
 4. Put ``MapForgeAPI.dll`` in folder
   - Windows - ``%appdata%/EXILED/Plugins/dependencies``
   - Linux - ``.config/EXILED/Plugins/dependencies``
