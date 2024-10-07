@@ -1,0 +1,11 @@
+{
+  "displayname": "MapForge",
+  "description": "Plugin which allows you to customize SCP: SL map by using spawnable objects which server can spawn.",
+  "authorName": "Killers0992",
+  "buildType": 0,
+  "version": "1.0.0",
+  "scpslVersion": "13.5.1",
+  "loaderType": "nwapi,exiled",
+  "gameAssemblyReferences": "UnityEngine.dll,UnityEngine.AnimationModule.dll,UnityEngine.AssetBundleModule.dll,UnityEngine.CoreModule.dll,UnityEngine.IMGUIModule.dll,UnityEngine.PhysicsModule.dll,Mirror.dll,PluginAPI.dll,CommandSystem.Core.dll,Assembly-CSharp.dll",
+  "publicizeAssemblies": "Assembly-CSharp.dll"
+}
