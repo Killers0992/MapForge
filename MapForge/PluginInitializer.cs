@@ -5,10 +5,10 @@
 using HarmonyLib;
 using System;
 using MapForge.API;
+using System.IO;
 
 #if EXILED
 using Exiled.API.Features;
-using System.IO;
 #endif
 
 #if NWAPI
@@ -51,8 +51,6 @@ namespace MapForge
                 _harmony.PatchAll();
             }
 
-            Exiled.Events.Handlers.Server.WaitingForPlayers += InitializeObjects;
-
             MapForgeAPI.Initialize(path, _objects);
 
             StaticUnityMethods.OnUpdate += () =>
@@ -63,7 +61,6 @@ namespace MapForge
 
         void InitializeObjects()
         {
-            Exiled.Events.Handlers.Server.WaitingForPlayers -= InitializeObjects;
             _objects.Initialize();
         }
 
@@ -75,12 +72,15 @@ namespace MapForge
             if (!Directory.Exists(mapForgePath))
                 Directory.CreateDirectory(mapForgePath);
 
+            Exiled.Events.Handlers.Server.WaitingForPlayers += InitializeObjects;
+
             Initialize(mapForgePath);
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
+            Exiled.Events.Handlers.Server.WaitingForPlayers -= InitializeObjects;
             StaticUnityMethods.OnUpdate -= () =>
             {
                 MapForgeAPI.CheckForFileChanges();
