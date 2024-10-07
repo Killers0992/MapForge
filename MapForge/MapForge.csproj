@@ -1,40 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <OutputType>Library</OutputType>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <Configurations>EDITOR;NWAPI;EXILED</Configurations>
+    </PropertyGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	<PropertyGroup Condition=" '$(Configuration)' == 'EXILED'">
+		<AssemblyName>MapForge-exiled</AssemblyName>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)' != 'EXILED'">
+		<AssemblyName>MapForge-nwapi</AssemblyName>
+	</PropertyGroup>
+	
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp" Condition="'$(Configuration)' != 'EXILED'">
+            <HintPath>$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="CommandSystem.Core">
+            <HintPath>$(SL_REFERENCES)\CommandSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror">
+            <HintPath>$(SL_REFERENCES)\Mirror.dll</HintPath>
+        </Reference>
+        <Reference Include="PluginAPI" Condition="'$(Configuration)' != 'EXILED'">
+            <HintPath>$(SL_REFERENCES)\PluginAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>$(SL_REFERENCES)\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(SL_REFERENCES)\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+	
+    <ItemGroup>
+        <PackageReference Include="EXILED-OFFICIAL" Version="8.12.2" Condition="'$(Configuration)' == 'EXILED'" />
+        <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+    </ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'EDITOR'">
 		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;C:\Users\Kille\AppData\Roaming\SCP Secret Laboratory\PluginAPI\plugins\7777&quot;" />
 	</Target>
 
 	<ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-Publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="CommandSystem.Core">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\CommandSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Mirror">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Mirror.dll</HintPath>
-    </Reference>
-    <Reference Include="PluginAPI">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\PluginAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MapForge.API\MapForge.API.csproj" />
-  </ItemGroup>
+        <ProjectReference Include="..\MapForge.API\MapForge.API.csproj" />
+    </ItemGroup>
 </Project>

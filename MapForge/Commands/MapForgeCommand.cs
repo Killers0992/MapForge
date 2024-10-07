@@ -15,7 +15,6 @@ namespace MapForge.Commands
         public override string Description { get; } = "Main command for MapForge plugin.";
 
         public MapForgeCommand() => this.LoadGeneratedCommands();
-
         public override void LoadGeneratedCommands()
         {
             RegisterCommand(new ListBundlesCommand());
