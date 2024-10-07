@@ -7,7 +7,7 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
 <details>
 <summary>NW Plugin API</summary>
 
-1. Download latest plugin ``MapForge.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForge.dll)
+1. Download latest plugin ``MapForge.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/MapForge-nwapi.dll)
 2. Put ``MapForge.dll`` in folder
   - Windows - ``%appdata%/SCP Secret Laboratory/PluginAPI/plugins/global``
   - Linux - ``.config/SCP Secret Laboratory/PluginAPI/plugins/global``
