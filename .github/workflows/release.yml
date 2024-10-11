@@ -107,5 +107,6 @@ jobs:
           ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll
           ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/NWAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.NWAPI_ASESEMBLY_NAME }}.dll
           ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/EXILED/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.EXILED_ASESEMBLY_NAME }}.dll
+          ${{ github.workspace }}/PackageOutput/com.killers0992.mapforge.unitypackage
           ${{ github.workspace }}/releaseInfo.json
         tag_name: ${{ env.version }}
