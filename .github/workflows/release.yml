@@ -7,6 +7,7 @@ env:
   NET_FRAMEWORK_VERSION: "net48"
   PROJECT_NAME: "/MapForge"
   API_PROJECT_NAME: "/MapForge.API"
+  EDITOR_PROJECT_NAME: "/MapForge.Editor"
   NWAPI_ASESEMBLY_NAME: "MapForge-nwapi"
   EXILED_ASESEMBLY_NAME: "MapForge-exiled"
   SL_REFERENCES: "${{ github.workspace }}/References"
@@ -75,7 +76,19 @@ jobs:
       with:
         name: MapForge
         path: ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/EXILED/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.EXILED_ASESEMBLY_NAME }}.dll
-        
+
+    - run: |
+        find ${{ github.workspace }}/Package -name \*.meta >> metaList
+        cp ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}/Package/Runtime/MapForge.API.dll
+        cp ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.Editor.dll ${{ github.workspace }}/Package/Editor/MapForge.Editor.dll
+
+    - run: mkdir ${{ github.workspace }}/PackageOutput
+
+    - uses: pCYSl5EDgo/create-unitypackage@master
+      with:
+        package-path: ${{ github.workspace }}/PackageOutput/com.killers0992.mapforge.unitypackage
+        include-files: metaList
+      
     - name: Create Tag
       id: tag_version
       uses: mathieudutour/github-tag-action@v6.1
