@@ -9,7 +9,7 @@
 
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
-		<Configurations>Debug;Release;NWAPI;EXILED;EDITOR</Configurations>
+		<Configurations>Release</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
