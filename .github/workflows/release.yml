@@ -83,8 +83,8 @@ jobs:
     - run: |
         cd ${{ github.workspace }}
         find ./Packages -name \*.meta >> metaList
-        cp ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}/Package/Runtime/MapForge.API.dll
-        cp ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.Editor.dll ${{ github.workspace }}/Package/Editor/MapForge.Editor.dll
+        cp ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}/Packages/Runtime/MapForge.API.dll
+        cp ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.Editor.dll ${{ github.workspace }}/Packages/Editor/MapForge.Editor.dll
 
     - run: mkdir ${{ github.workspace }}/PackageOutput
 
