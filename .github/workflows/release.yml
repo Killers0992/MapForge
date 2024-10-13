@@ -81,8 +81,8 @@ jobs:
       run: dotnet build ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/MapForge.Editor.csproj --configuration Release
 
     - run: |
-        cd ${{ github.workspace }}\Package
-        find -name \*.meta >> metaList
+        cd ${{ github.workspace }}
+        find ./Packages -name \*.meta >> metaList
         cp ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}/Package/Runtime/MapForge.API.dll
         cp ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.Editor.dll ${{ github.workspace }}/Package/Editor/MapForge.Editor.dll
 
