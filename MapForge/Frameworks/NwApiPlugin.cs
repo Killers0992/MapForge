@@ -1,15 +1,7 @@
 ﻿#if NWAPI
-using System.IO;
-using System.Linq;
-
-using MapForge.Misc;
-
 using PluginAPI.Core.Attributes;
 using PluginAPI.Core;
 using PluginAPI.Events;
-using PluginAPI.Loader;
-using PluginAPI.Helpers;
-using System.Reflection;
 
 namespace MapForge.Frameworks
 {
