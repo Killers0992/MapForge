@@ -1,7 +1,7 @@
 {
   "name": "com.killers0992.mapforge",
   "displayName": "MapForge",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "unity": "2021.3",
   "description": "Plugin which allows you to customize SCP: SL map by using spawnable objects which server can spawn.",
   "keywords": [

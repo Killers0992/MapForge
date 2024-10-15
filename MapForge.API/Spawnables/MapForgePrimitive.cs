@@ -32,10 +32,10 @@ namespace MapForge.API.Spawnables
         public Color Color = Color.white;
         public Action<Color> ColorChanged;
 
-        public bool IsCollidable;
+        public bool IsCollidable = true;
         public Action<bool> CollisionChanged;
 
-        public bool IsVisible;
+        public bool IsVisible = true;
         public Action<bool> VisibilityChanged;
 
         public override void OnUpdate()
