@@ -10,8 +10,8 @@ namespace MapForge.API.Editors
     public class MapForgePrimitiveEditor : Editor
     {
         private SpawnablePrimitiveType _lastType;
-        private PrimitiveExtraFlags _lastFlags;
         private Color _lastColor;
+        private bool _lastCollidable, _lastVisibility;
 
         public MapForgePrimitive Base => this.target as MapForgePrimitive;
 
@@ -20,24 +20,13 @@ namespace MapForge.API.Editors
             Base.InitializeInEditor();
             _lastType = Base.PrimitiveType;
             _lastColor = Base.Color;
-            _lastFlags = Base.Flags;
+            _lastCollidable = Base.IsCollidable;
+            _lastVisibility = Base.IsVisible;
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-
-            bool isVisbile = EditorGUILayout.Toggle("Is Visbile", Base.Flags.HasFlag(PrimitiveExtraFlags.Visible));
-            bool canCollide = EditorGUILayout.Toggle("Is Collidable", Base.Flags.HasFlag(PrimitiveExtraFlags.Collidable));
-
-            PrimitiveExtraFlags flags = PrimitiveExtraFlags.None;
-            if (isVisbile)
-                flags |= PrimitiveExtraFlags.Visible;
-            if (canCollide)
-                flags |= PrimitiveExtraFlags.Collidable;
-
-            if (flags != Base.Flags)
-                Base.Flags = flags;
 
             if (Base.PrimitiveType != _lastType)
             {
@@ -45,15 +34,20 @@ namespace MapForge.API.Editors
                 _lastType = Base.PrimitiveType;
             }
 
-            if (Base.Flags != _lastFlags)
+            if (Base.IsCollidable != _lastCollidable)
             {
                 if (Base.ObjectCollider != null)
-                    Base.ObjectCollider.enabled = Base.Flags.HasFlag(PrimitiveExtraFlags.Collidable);
+                    Base.ObjectCollider.enabled = Base.IsCollidable;
 
+                _lastCollidable = Base.IsCollidable;
+            }
+
+            if (Base.IsVisible != _lastVisibility)
+            {
                 if (Base.ObjectRenderer != null)
-                    Base.ObjectRenderer.enabled = Base.Flags.HasFlag(PrimitiveExtraFlags.Visible);
+                    Base.ObjectRenderer.enabled = Base.IsVisible;
 
-                _lastFlags = Base.Flags;
+                _lastVisibility = Base.IsVisible;
             }
 
             if (Base.Color != _lastColor)

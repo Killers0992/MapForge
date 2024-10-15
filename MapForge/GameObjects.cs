@@ -213,7 +213,9 @@ namespace MapForge
 
                     primitiveInstance.NetworkMaterialColor = primitive.Color;
                     primitiveInstance.NetworkPrimitiveType = primitive.PrimitiveType.ToPrimitiveType();
-                    primitiveInstance.NetworkPrimitiveFlags = primitive.Flags.ToPrimitiveFlags();
+
+                    PrimitiveFlags constructFlags = PrimitiveFlags.None.Set(PrimitiveFlags.Visible, primitive.IsVisible).Set(PrimitiveFlags.Collidable, primitive.IsCollidable);
+                    primitiveInstance.NetworkPrimitiveFlags = constructFlags;
 
                     primitive.ColorChanged += (Color color) =>
                     {
@@ -225,9 +227,14 @@ namespace MapForge
                         primitiveInstance.NetworkPrimitiveType = type.ToPrimitiveType();
                     };
 
-                    primitive.FlagsChanged += (PrimitiveExtraFlags flags) =>
+                    primitive.CollisionChanged += (bool newColision) =>
                     {
-                        primitiveInstance.NetworkPrimitiveFlags = flags.ToPrimitiveFlags();
+                        primitiveInstance.NetworkPrimitiveFlags = primitiveInstance.NetworkPrimitiveFlags.Set(PrimitiveFlags.Collidable, newColision);
+                    };
+
+                    primitive.VisibilityChanged += (bool newVisibility) =>
+                    {
+                        primitiveInstance.NetworkPrimitiveFlags = primitiveInstance.NetworkPrimitiveFlags.Set(PrimitiveFlags.Visible, newVisibility);
                     };
 
                     NetworkServer.Spawn(primitiveInstance.gameObject);

@@ -10,7 +10,7 @@ namespace MapForge.API.Spawnables
     {
         private SpawnablePrimitiveType _primitiveType;
         private Color _lastColor;
-        private PrimitiveExtraFlags _lastFlags;
+        private bool _lastCollidable, _lastVisibility;
 
         internal static MapForgePrimitive Create(SpawnablePrimitiveType type, Transform parent)
         {
@@ -32,9 +32,11 @@ namespace MapForge.API.Spawnables
         public Color Color = Color.white;
         public Action<Color> ColorChanged;
 
-        [HideInInspector]
-        public PrimitiveExtraFlags Flags = PrimitiveExtraFlags.Collidable | PrimitiveExtraFlags.Visible;
-        public Action<PrimitiveExtraFlags> FlagsChanged;
+        public bool IsCollidable;
+        public Action<bool> CollisionChanged;
+
+        public bool IsVisible;
+        public Action<bool> VisibilityChanged;
 
         public override void OnUpdate()
         {
@@ -59,16 +61,22 @@ namespace MapForge.API.Spawnables
                 _lastColor = Color;
             }
 
-            if (Flags != _lastFlags)
+            if (IsCollidable != _lastCollidable)
+            {
+                if (ObjectCollider != null)
+                    ObjectCollider.enabled = IsCollidable;
+
+                CollisionChanged?.Invoke(IsCollidable);
+                _lastCollidable = IsCollidable;
+            }
+
+            if (IsVisible != _lastVisibility)
             {
                 if (ObjectRenderer != null)
-                    ObjectRenderer.enabled = Flags.HasFlag(PrimitiveExtraFlags.Visible);
+                    ObjectRenderer.enabled = IsVisible;
 
-                if (ObjectCollider != null)
-                    ObjectCollider.enabled = Flags.HasFlag(PrimitiveExtraFlags.Collidable);
-
-                FlagsChanged?.Invoke(Flags);
-                _lastFlags = Flags;
+                VisibilityChanged?.Invoke(IsVisible);
+                _lastVisibility = IsVisible;
             }
         }
 

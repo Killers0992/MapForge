@@ -6,6 +6,7 @@ using UnityEngine;
 using Interactables.Interobjects.DoorUtils;
 using AdminToys;
 using Mirror;
+using System;
 
 /// <summary>
 /// Extensions for MapForge.
@@ -120,5 +121,38 @@ public static class Extensions
     public static void Lock(this ItemPickupBase pickup)
     {
         pickup.Info.Locked = true;
+    }
+
+    /// <summary>
+    /// Adds specific flag into enum.
+    /// </summary>
+    /// <param name="enum">The enum.</param>
+    /// <param name="flags">The flag.</param>
+    /// <returns>Flags</returns>
+    public static PrimitiveFlags Add(this PrimitiveFlags @enum, PrimitiveFlags flags)
+    {
+        return @enum |= flags;
+    }
+
+    /// <summary>
+    /// Removes specific flag from enum.
+    /// </summary>
+    /// <param name="enum">The enum.</param>
+    /// <param name="flags">The flag.</param>
+    /// <returns>Flags</returns>
+    public static PrimitiveFlags Remove(this PrimitiveFlags @enum, PrimitiveFlags flags)
+    {
+        return @enum &= ~flags;
+    }
+
+    /// <summary>
+    /// Sets specific flag in enum.
+    /// </summary>
+    /// <param name="enum">The enum.</param>
+    /// <param name="flags">The flag.</param>
+    /// <returns>Flags</returns>
+    public static PrimitiveFlags Set(this PrimitiveFlags @enum, PrimitiveFlags flags, bool isEnabled)
+    {
+        return isEnabled ? @enum.Add(flags) : @enum.Remove(flags);
     }
 }
