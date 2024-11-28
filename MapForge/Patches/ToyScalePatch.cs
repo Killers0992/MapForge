@@ -14,7 +14,7 @@ namespace MapForge.Patches
                 return false;
 
             __instance.NetworkPosition = __instance.transform.position;
-            __instance.NetworkRotation = new LowPrecisionQuaternion(__instance.transform.rotation);
+            __instance.NetworkRotation = __instance.transform.rotation;
             __instance.NetworkScale = __instance.transform.CalculateGlobalScale();
             return false;
         }

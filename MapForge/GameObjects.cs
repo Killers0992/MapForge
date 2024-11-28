@@ -246,7 +246,7 @@ namespace MapForge
                     lightInstance.NetworkLightColor = light.Color;
                     lightInstance.NetworkLightRange = light.Range;
                     lightInstance.NetworkLightIntensity = light.Intensity;
-                    lightInstance.NetworkLightShadows = light.Shadows;
+                    lightInstance.NetworkShadowType = light.Shadows ? LightShadows.Hard : LightShadows.None;
 
                     light.ColorChanged += (Color color) =>
                     {
@@ -265,7 +265,7 @@ namespace MapForge
 
                     light.ShadowsChanged += (bool shadows) =>
                     {
-                        lightInstance.NetworkLightShadows = shadows;
+                        lightInstance.NetworkShadowType = light.Shadows ? LightShadows.Hard : LightShadows.None;
                     };
 
                     NetworkServer.Spawn(lightInstance.gameObject);
