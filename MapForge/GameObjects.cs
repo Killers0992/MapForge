@@ -207,16 +207,19 @@ namespace MapForge
                     break;
                 case MapForgePrimitive primitive:
                     PrimitiveObjectToy primitiveInstance = PrimitiveObject.CreateNewInstance(primitive.Position, primitive.Rotation, primitive.Scale, primitive.transform);
-                    primitiveInstance.NetworkScale = primitiveInstance.transform.CalculateGlobalScale();
-
                     info.SpawnedBy.SubObjects.Add(primitiveInstance.gameObject);
 
+                    // Setup intial values.
+                    primitiveInstance.NetworkIsStatic = !primitive.IsAnimated;
+
+                    primitiveInstance.NetworkScale = primitiveInstance.transform.CalculateGlobalScale();
                     primitiveInstance.NetworkMaterialColor = primitive.Color;
                     primitiveInstance.NetworkPrimitiveType = primitive.PrimitiveType.ToPrimitiveType();
 
                     PrimitiveFlags constructFlags = PrimitiveFlags.None.Set(PrimitiveFlags.Visible, primitive.IsVisible).Set(PrimitiveFlags.Collidable, primitive.IsCollidable);
                     primitiveInstance.NetworkPrimitiveFlags = constructFlags;
 
+                    // Listen for changes.
                     primitive.ColorChanged += (Color color) =>
                     {
                         primitiveInstance.NetworkMaterialColor = color;
@@ -243,10 +246,24 @@ namespace MapForge
                     LightSourceToy lightInstance = LightObject.CreateNewInstance(light.Position, light.Rotation, light.Scale, light.transform);
                     info.SpawnedBy.SubObjects.Add(lightInstance.gameObject);
 
+                    // Setup intial values.
+                    lightInstance.NetworkIsStatic = !light.IsAnimated;
+
+                    lightInstance.NetworkLightType = light.LightType.ToLightType();
                     lightInstance.NetworkLightColor = light.Color;
                     lightInstance.NetworkLightRange = light.Range;
                     lightInstance.NetworkLightIntensity = light.Intensity;
-                    lightInstance.NetworkShadowType = light.Shadows ? LightShadows.Hard : LightShadows.None;
+                    lightInstance.NetworkShadowType = light.ShadowType.ToShadowType();
+                    lightInstance.NetworkShadowStrength = light.ShadowStrength;
+                    lightInstance.NetworkLightShape = light.Shape.ToShapeType();
+                    lightInstance.NetworkSpotAngle = light.SpotAngle;
+                    lightInstance.NetworkInnerSpotAngle = light.InnerSpotAngle;
+
+                    // Listen for changes.
+                    light.LightTypeChanged += (SpawnableLightType type) =>
+                    {
+                        lightInstance.NetworkLightType = type.ToLightType();
+                    };
 
                     light.ColorChanged += (Color color) =>
                     {
@@ -263,9 +280,29 @@ namespace MapForge
                         lightInstance.NetworkLightIntensity = intensity;
                     };
 
-                    light.ShadowsChanged += (bool shadows) =>
+                    light.ShadowTypeChanged += (LightShadowType type) =>
                     {
-                        lightInstance.NetworkShadowType = light.Shadows ? LightShadows.Hard : LightShadows.None;
+                        lightInstance.NetworkShadowType = type.ToShadowType();
+                    };
+
+                    light.ShadowStrengthChanged += (float strength) =>
+                    {
+                        lightInstance.NetworkShadowStrength = strength;
+                    };
+
+                    light.ShapeChanged += (LightShapeType type) =>
+                    {
+                        lightInstance.NetworkLightShape = type.ToShapeType();
+                    };
+
+                    light.SpotAngleChanged += (float angle) =>
+                    {
+                        lightInstance.NetworkSpotAngle = angle;
+                    };
+
+                    light.InnerSpotAngleChanged += (float angle) =>
+                    {
+                        lightInstance.NetworkInnerSpotAngle = angle;
                     };
 
                     NetworkServer.Spawn(lightInstance.gameObject);

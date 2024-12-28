@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MapForge.API.Models
 {
@@ -14,6 +15,9 @@ namespace MapForge.API.Models
 
         public PrefabInfo SpawnedBy { get; private set; }
 
+        public bool IsAnimated = true;
+
+        public Action UpdatePosition;
 
         [ExecuteInEditMode]
         private void OnEnable()
@@ -24,7 +28,14 @@ namespace MapForge.API.Models
             InitializeInEditor();
         }
 
-        public void Update() => OnUpdate();
+        public void Update()
+        {
+            if (!IsAnimated)
+                return;
+
+            OnUpdate();
+            UpdatePosition?.Invoke();
+        }
 
         public virtual void Spawn(PrefabInfo prefab)
         {

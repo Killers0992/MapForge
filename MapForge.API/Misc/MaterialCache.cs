@@ -3,6 +3,7 @@ using MapForge.API.Spawnables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace MapForge.API.Misc
 {
@@ -38,18 +39,24 @@ namespace MapForge.API.Misc
 
         static Material CreateMaterial(Color color)
         {
-            var material = new Material(Shader.Find("Standard"));
+            bool srp = GraphicsSettings.renderPipelineAsset != null;
+            var material = new Material(srp ? Shader.Find("HDRP/Lit") : Shader.Find("Standard"));
 
             if (color.a < 1f)
             {
-                material.SetFloat("_Mode", 3);
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.EnableKeyword("_ALPHABLEND_ON");
-                material.renderQueue = 3000;
+                if (srp)
+                    material.SetFloat("_SurfaceType", 1f);
+                else
+                {
+                    material.SetFloat("_Mode", 3);
+                    material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                    material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                    material.EnableKeyword("_ALPHABLEND_ON");
+                    material.renderQueue = 3000;
+                }
             }
 
-            material.SetColor("_Color", color);
+            material.SetColor(srp ? "_BaseColor" : "_Color", color);
 
             return material;
         }
