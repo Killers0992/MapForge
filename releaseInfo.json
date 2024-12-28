@@ -3,7 +3,7 @@
   "description": "Plugin which allows you to customize SCP: SL map by using spawnable objects which server can spawn.",
   "authorName": "Killers0992",
   "buildType": 0,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "scpslVersion": "14.0.0",
   "loaderType": "nwapi,exiled",
   "gameAssemblyReferences": "UnityEngine.dll,UnityEngine.AnimationModule.dll,UnityEngine.AssetBundleModule.dll,UnityEngine.CoreModule.dll,UnityEngine.IMGUIModule.dll,UnityEngine.PhysicsModule.dll,Mirror.dll,PluginAPI.dll,CommandSystem.Core.dll,Assembly-CSharp.dll",
