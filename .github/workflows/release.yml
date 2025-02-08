@@ -54,7 +54,7 @@ jobs:
       run: dotnet build ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/MapForge.API.csproj --configuration Release
 
     - name: Upload NWAPI
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MapForge
         path: ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll
@@ -63,7 +63,7 @@ jobs:
       run: dotnet build ${{ github.workspace }}${{ env.PROJECT_NAME }}/MapForge.csproj --configuration NWAPI
       
     - name: Upload NWAPI
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MapForge
         path: ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/NWAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.NWAPI_ASESEMBLY_NAME }}.dll
@@ -72,7 +72,7 @@ jobs:
       run: dotnet build ${{ github.workspace }}${{ env.PROJECT_NAME }}/MapForge.csproj --configuration EXILED
       
     - name: Upload EXILED
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MapForge
         path: ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/EXILED/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.EXILED_ASESEMBLY_NAME }}.dll
