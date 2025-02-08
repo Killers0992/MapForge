@@ -3,7 +3,10 @@
 #endif
 
 using HarmonyLib;
+using InventorySystem.Items.Pickups;
 using MapForge.API;
+using MapForge.API.Models;
+using MapForge.API.Spawnables;
 
 namespace MapForge
 {
@@ -14,7 +17,7 @@ namespace MapForge
     {
         static Harmony _harmony;
         static GameObjects _objects = new GameObjects();
-
+        
         /// <summary>
         /// Main initialization method.
         /// </summary>
@@ -41,6 +44,25 @@ namespace MapForge
         public static void InitializeObjects()
         {
             _objects.Initialize();
+        }
+
+        /// <summary>
+        /// Invoked when someone tries to search for pickup.
+        /// </summary>
+        /// <param name="hub">The hub searching for pickup.</param>
+        /// <param name="pickup">The pickup being searched.</param>
+        public static bool PickupInteraction(ReferenceHub hub, ItemPickupBase pickup)
+        {
+            if (!MapForgePickup.Interactables.TryGetValue(pickup.Info.Serial, out MapForgePickup fPickup))
+                return true;
+
+            PrefabInfo info = fPickup.SpawnedBy;
+
+            if (info == null)
+                return true;
+
+            info.OnUsedInteraction?.Invoke(fPickup, hub.authManager.UserId);
+            return false;
         }
     }
 }

@@ -89,23 +89,14 @@ namespace MapForge.API
         {
             switch (type)
             {
-                case SpawnableLightType.Point:
-                    return LightType.Point;
-
                 case SpawnableLightType.Spot:
                     return LightType.Spot;
 
                 case SpawnableLightType.Directional:
                     return LightType.Directional;
 
-                case SpawnableLightType.Area:
-                    return LightType.Area;
-
-                case SpawnableLightType.Rectangle:
-                    return LightType.Rectangle;
-
                 default:
-                    return LightType.Disc;
+                    return LightType.Point;
             }
         }
 

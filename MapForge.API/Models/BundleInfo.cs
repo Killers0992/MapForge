@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -35,6 +36,11 @@ namespace MapForge.API.Models
         /// All prefabs inside asset bundle.
         /// </summary>
         public string[] Prefabs => Base.GetAllAssetNames();
+
+        /// <summary>
+        /// Gets invoked when bundle is reloaded.
+        /// </summary>
+        public Action BundleReloaded;
 
         /// <summary>
         /// A dictionary that stores instances of prefabs, mapping a unique identifier (an integer) 
@@ -78,16 +84,19 @@ namespace MapForge.API.Models
         /// <summary>
         /// Reloads bundle and loads it from file.
         /// </summary>
-        public void Reload()
+        public bool Reload()
         {
             foreach(PrefabInfo prefab in PrefabInstances.Values)
             {
                 prefab.DeSpawn();
             }
-
-            Base.Unload(true);
+            
+            Base?.Unload(true);
 
             Base = AssetBundle.LoadFromFile(Path);
+
+            if (Base == null)
+                return false;
 
             foreach (PrefabInfo prefab in PrefabInstances.Values.ToArray())
             {
@@ -95,6 +104,9 @@ namespace MapForge.API.Models
                 if (!prefab.Spawn())
                     prefab.Unload();
             }
+
+            BundleReloaded?.Invoke();
+            return true;
         }
 
         /// <summary>

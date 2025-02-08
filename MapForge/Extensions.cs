@@ -81,7 +81,7 @@ public static class Extensions
     /// <param name="scale">The scale of pickup.</param>
     /// <param name="parent">The transfrom where object will be attached to.</param>
     /// <returns>New pickup instance.</returns>
-    public static ItemPickupBase ToPickup(this ItemType type, Vector3 position, Vector3 rotation, Vector3 scale, Transform parent)
+    public static ItemPickupBase ToPickup(this ItemType type, Transform parent)
     {
         if (!InventoryItemLoader.AvailableItems.TryGetValue(type, out ItemBase ib))
             return null;
@@ -89,8 +89,9 @@ public static class Extensions
         if (ib.PickupDropModel == null)
             return null;
 
-        ItemPickupBase newPickup = UnityEngine.Object.Instantiate(ib.PickupDropModel, position, Quaternion.Euler(rotation), parent);
-        newPickup.transform.localScale = scale;
+        ItemPickupBase newPickup = UnityEngine.Object.Instantiate(ib.PickupDropModel);
+        SetDefaults(newPickup.transform, parent);
+
         newPickup.Info = new PickupSyncInfo(type, ib.Weight);
 
         return newPickup;
@@ -100,16 +101,30 @@ public static class Extensions
     /// Creates new instance of specific type.
     /// </summary>
     /// <typeparam name="T">The instance type.</typeparam>
+    /// <param name="parent">The transform where object will be atteched to.</param>
+    /// <returns>New instance.</returns>
+    public static T CreateNewInstance<T>(this T instance, Transform parent) where T : MonoBehaviour
+    {
+        T newInstance = UnityEngine.Object.Instantiate(instance);
+        SetDefaults(newInstance.transform, parent);
+
+        return newInstance;
+    }
+
+
+    /// <summary>
+    /// Creates new instance of specific type.
+    /// </summary>
     /// <param name="instance">The instance type.</param>
     /// <param name="position">The position of object.</param>
     /// <param name="rotation">The rotation of object</param>
     /// <param name="scale">The scale of object.</param>
     /// <param name="parent">The transform where object will be atteched to.</param>
     /// <returns>New instance.</returns>
-    public static T CreateNewInstance<T>(this T instance, Vector3 position, Vector3 rotation, Vector3 scale, Transform parent) where T : NetworkBehaviour
+    public static GameObject CreateNewInstance(this GameObject instance, Transform parent)
     {
-        T newInstance = UnityEngine.Object.Instantiate(instance, position, Quaternion.Euler(rotation), parent);
-        newInstance.transform.localScale = scale;
+        GameObject newInstance = UnityEngine.Object.Instantiate(instance);
+        SetDefaults(newInstance.transform, parent);
 
         return newInstance;
     }
@@ -154,5 +169,13 @@ public static class Extensions
     public static PrimitiveFlags Set(this PrimitiveFlags @enum, PrimitiveFlags flags, bool isEnabled)
     {
         return isEnabled ? @enum.Add(flags) : @enum.Remove(flags);
+    }
+
+    static void SetDefaults(Transform t, Transform parent)
+    {
+        t.transform.parent = parent;
+        t.transform.localPosition = Vector3.zero;
+        t.transform.localRotation = Quaternion.identity;
+        t.transform.localScale = Vector3.one;
     }
 }

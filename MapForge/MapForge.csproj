@@ -4,6 +4,7 @@
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <Configurations>EDITOR;NWAPI;EXILED</Configurations>
+        <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'EXILED'">
@@ -22,7 +23,7 @@
             <HintPath>$(SL_REFERENCES)\CommandSystem.Core.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
-            <HintPath>$(SL_REFERENCES)\Mirror.dll</HintPath>
+            <HintPath>$(SL_REFERENCES)\Mirror-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="PluginAPI" Condition="'$(Configuration)' != 'EXILED'">
             <HintPath>$(SL_REFERENCES)\PluginAPI.dll</HintPath>
@@ -41,7 +42,7 @@
         <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'EDITOR'">
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'NWAPI'">
 		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;C:\Users\Kille\AppData\Roaming\SCP Secret Laboratory\PluginAPI\plugins\7777&quot;" />
 	</Target>
 

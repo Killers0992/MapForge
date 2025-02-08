@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UnityEngine;
 
 namespace MapForge.API.Models
 {
@@ -18,9 +14,14 @@ namespace MapForge.API.Models
             IsInitialized = true;
         }
 
-        public virtual void OnSpawnObject(SpawnableInfo info)
+        public virtual void SpawnObject(GameObject go, int dimensionId)
         {
 
+        }
+
+        public virtual GameObject OnSpawnObject(SpawnableInfo info)
+        {
+            return null;
         }
     }
 }

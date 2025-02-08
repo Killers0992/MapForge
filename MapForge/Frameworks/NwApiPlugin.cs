@@ -23,6 +23,9 @@ namespace MapForge.Frameworks
 
         [PluginEvent]
         void OnWaitingForPlayers(WaitingForPlayersEvent ev) => PluginInitializer.InitializeObjects();
+
+        [PluginEvent]
+        bool OnSearchPickup(PlayerSearchPickupEvent ev) => PluginInitializer.PickupInteraction(ev.Player.ReferenceHub, ev.Item);
     }
 }
 #endif

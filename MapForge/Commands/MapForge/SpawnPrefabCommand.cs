@@ -25,7 +25,7 @@ namespace MapForge.Commands.MapForge
 
             if (arguments.Count < 2)
             {
-                response = "Syntax: mapforge spawnprefab (bundleName) (prefabName)";
+                response = "Syntax: mapforge spawnprefab (bundleName) (prefabName) (dimensionId OPTIONAL)";
                 return false;
             }
 
@@ -44,8 +44,15 @@ namespace MapForge.Commands.MapForge
                 return false;
             }
 
+            int dimensionId = -1;
+            if (arguments.Count == 3)
+            {
+                if (int.TryParse(arguments.At(2), out int dimId))
+                    dimensionId = dimId;
+            }
+
             PrefabInfo prefab = bundle.CreatePrefab(prefabName);
-            prefab.Spawn(playerSender.ReferenceHub.transform.position, Vector3.zero, Vector3.one);
+            prefab.Spawn(playerSender.ReferenceHub.transform.position, Vector3.zero, Vector3.one, dimensionId: dimensionId);
             response = $"Spawned prefab [{prefab.Id}] {prefabName}";
             return true;
         }

@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace MapForge.API.Editors
 {
-    [CustomEditor(typeof(MapForgeLight))]
+    [CustomEditor(typeof(MapForgeLight)), CanEditMultipleObjects]
     public class MapForgeLightEditor : Editor
     {
         public MapForgeLight Base => this.target as MapForgeLight;

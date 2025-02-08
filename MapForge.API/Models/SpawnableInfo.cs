@@ -15,6 +15,8 @@ namespace MapForge.API.Models
 
         public PrefabInfo SpawnedBy { get; private set; }
 
+        public GameObject SpawnedObject { get; private set; }
+
         public bool IsAnimated = true;
 
         public Action UpdatePosition;
@@ -40,7 +42,12 @@ namespace MapForge.API.Models
         public virtual void Spawn(PrefabInfo prefab)
         {
             SpawnedBy = prefab;
-            MapForgeAPI.Objects.OnSpawnObject(this);
+            SpawnedObject = MapForgeAPI.Objects.OnSpawnObject(this);
+
+            if (SpawnedObject == null)
+                return;
+
+            MapForgeAPI.Objects.SpawnObject(SpawnedObject, prefab.DimensionId);
         }
 
         public virtual void OnUpdate() { }

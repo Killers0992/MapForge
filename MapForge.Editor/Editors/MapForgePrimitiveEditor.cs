@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace MapForge.API.Editors
 {
-    [CustomEditor(typeof(MapForgePrimitive))]
+    [CustomEditor(typeof(MapForgePrimitive)), CanEditMultipleObjects]
     public class MapForgePrimitiveEditor : Editor
     {
         public MapForgePrimitive Base => this.target as MapForgePrimitive;

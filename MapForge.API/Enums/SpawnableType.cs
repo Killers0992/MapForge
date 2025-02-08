@@ -9,5 +9,6 @@
         Primitive,
         Ragdoll,
         Window,
+        Asset,
     }
 }

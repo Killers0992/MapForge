@@ -5,5 +5,6 @@
         LightContaiment,
         HeavyContaiment,
         Entrance,
+        BulkDoor,
     }
 }

@@ -8,7 +8,7 @@ namespace MapForge.API
 {
     public class MapForgeEditor
     {
-        static List<Type> WhitelistedComponents = new List<Type>()
+        public static List<Type> WhitelistedComponents = new List<Type>()
         {
             typeof(Transform),
             typeof(Animator),
@@ -50,6 +50,11 @@ namespace MapForge.API
                             continue;
 
                         if (WhitelistedComponents.Contains(componentType.BaseType))
+                            continue;
+
+                        Type ignore = componentType.GetInterface("IgnoreStripping");
+
+                        if (ignore != null)
                             continue;
 
                         MapForgeLog.Info($"Destroy component <color=orange>" + componentType.Name + "</color> on <color=orange>" + component.name + "</color>");

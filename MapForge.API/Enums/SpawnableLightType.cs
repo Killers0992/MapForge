@@ -5,8 +5,5 @@
         Point,
         Spot,
         Directional,
-        Area,
-        Rectangle,
-        Disc,
     }
 }

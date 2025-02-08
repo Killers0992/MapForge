@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using MapForge.API.Spawnables;
 using UnityEngine;
 
 namespace MapForge.API.Models
@@ -58,9 +60,24 @@ namespace MapForge.API.Models
         public Vector3 Scale { get; set; }
 
         /// <summary>
+        /// Event invoked when someone tries to pickup item with has interaction events.
+        /// </summary>
+        public Action<MapForgePickup, string> OnUsedInteraction;
+
+        /// <summary>
         /// Returns list of spawned sub object from prefab.
         /// </summary>
         public List<GameObject> SubObjects { get; set; } = new List<GameObject>();
+
+        /// <summary>
+        /// Gets for which dimension this prefab will be spawned. ( everyone in same dimension will be able to see this )
+        /// </summary>
+        public int DimensionId { get; set; }
+
+        /// <summary>
+        /// Gets spawnables in this prefab.
+        /// </summary>
+        public SpawnableInfo[] Spawnables { get; set; }
 
         /// <summary>
         /// Spawns prefab.
@@ -70,7 +87,7 @@ namespace MapForge.API.Models
         /// <param name="scale">The scale of spawn.</param>
         /// <param name="prefabInstance">Provide prefab instance if exists.</param>
         /// <returns></returns>
-        public bool Spawn(Vector3 position, Vector3 rotation, Vector3 scale, GameObject prefabInstance = null)
+        public bool Spawn(Vector3 position, Vector3 rotation, Vector3 scale, GameObject prefabInstance = null, int dimensionId = -1)
         {
             // Despawn object if its already spawned.
             if (IsSpawned)
@@ -86,6 +103,8 @@ namespace MapForge.API.Models
                 }
             }
 
+            DimensionId = dimensionId;
+
             // Cache for reloading purposes.
             Position = position;
             Rotation = rotation;
@@ -96,7 +115,9 @@ namespace MapForge.API.Models
 
             Object.transform.localScale = Scale;
 
-            foreach(SpawnableInfo spawnable in Object.GetComponentsInChildren<SpawnableInfo>())
+            Spawnables = Object.GetComponentsInChildren<SpawnableInfo>();
+
+            foreach (SpawnableInfo spawnable in Spawnables)
             {
                 spawnable.Spawn(this);
             }
