@@ -42,7 +42,7 @@
         <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'NWAPI'">
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;C:\Users\Kille\AppData\Roaming\SCP Secret Laboratory\PluginAPI\plugins\7777&quot;" />
 	</Target>
 
