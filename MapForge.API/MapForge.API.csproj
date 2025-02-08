@@ -18,7 +18,7 @@
         </Reference>
     </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'NWAPI'">
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
 		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;C:\Users\Kille\AppData\Roaming\SCP Secret Laboratory\PluginAPI\plugins\7777\dependencies&quot;" />
 		<Exec Command="xcopy /y &quot;$(TargetPath)&quot; &quot;D:\Unity Projects\2021\MapForgeEditor\Packages\com.killers0992.mapforge\Runtime&quot;" />
 	</Target>
