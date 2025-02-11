@@ -13,7 +13,7 @@ Plugin which allows you to customize SCP: SL map by using spawnable objects whic
   - Linux - ``.config/SCP Secret Laboratory/plugins``
 3. Download latest dependencies ``MapForgeAPI.dll``, ``0Harmony.dll`` [Download](https://github.com/Killers0992/MapForge/releases/latest/download/dependencies.zip)
 4. Extract ``dependencies.zip`` and put ``MapForgeAPI.dll`` and ``0Harmony.dll`` in folder
-  - Windows - ``%appdata%/SCP Secret Laboratory/Labadie-Beta//dependencies``
+  - Windows - ``%appdata%/SCP Secret Laboratory/LabAPI-Beta/dependencies``
   - Linux - ``.config/SCP Secret Laboratory/LabAPI-Beta/dependencies``
 5. Launch SCP: SL server.
 </details>
