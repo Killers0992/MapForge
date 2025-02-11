@@ -89,8 +89,8 @@ jobs:
         
     - uses: vimtor/action-zip@v1.2
       with:
-        files: ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/LABAPI/${{ env.NET_FRAMEWORK_VERSION }}/0Harmony.dll
-        dest: ${{ github.workspace }}/dependencies.zip
+        files: ${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ env.PROJECT_NAME }}/bin/LABAPI/${{ env.NET_FRAMEWORK_VERSION }}/0Harmony.dll
+        dest: dependencies.zip
 
     - name: Make Release
       uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844
