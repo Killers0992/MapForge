@@ -89,7 +89,7 @@ jobs:
         
     - uses: vimtor/action-zip@v1.2
       with:
-        files: ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/NWAPI/${{ env.NET_FRAMEWORK_VERSION }}/0Harmony.dll
+        files: ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/LABAPI/${{ env.NET_FRAMEWORK_VERSION }}/0Harmony.dll
         dest: ${{ github.workspace }}/dependencies.zip
 
     - name: Make Release
@@ -97,7 +97,7 @@ jobs:
       with:
         files: |
           ${{ github.workspace }}/dependencies.zip
-          ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/NWAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.LABAPI_ASESEMBLY_NAME }}.dll
+          ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/LABAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.LABAPI_ASESEMBLY_NAME }}.dll
           ${{ github.workspace }}/PackageOutput/com.killers0992.mapforge.unitypackage
           ${{ github.workspace }}/releaseInfo.json
         tag_name: ${{ env.version }}
