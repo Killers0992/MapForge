@@ -8,9 +8,7 @@ env:
   PROJECT_NAME: "/MapForge"
   API_PROJECT_NAME: "/MapForge.API"
   EDITOR_PROJECT_NAME: "/MapForge.Editor"
-  NWAPI_ASESEMBLY_NAME: "MapForge-nwapi"
   LABAPI_ASESEMBLY_NAME: "MapForge-labapi"
-  EXILED_ASESEMBLY_NAME: "MapForge-exiled"
   SL_REFERENCES: "${{ github.workspace }}/References"
   UNITY_REFERENCES: "${{ github.workspace }}/References"
 
@@ -56,10 +54,7 @@ jobs:
       
     - name: Build LABAPI
       run: dotnet build ${{ github.workspace }}${{ env.PROJECT_NAME }}/MapForge.csproj --configuration LABAPI
-    
-    - name: Build EXILED
-      run: dotnet build ${{ github.workspace }}${{ env.PROJECT_NAME }}/MapForge.csproj --configuration EXILED
-      
+
     - name: Build Editor
       run: dotnet build ${{ github.workspace }}${{ env.EDITOR_PROJECT_NAME }}/MapForge.Editor.csproj --configuration Release
 
@@ -69,7 +64,6 @@ jobs:
         name: MapForge
         path: |
           ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/LABAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.LABAPI_ASESEMBLY_NAME }}.dll
-          ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/EXILED/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.EXILED_ASESEMBLY_NAME }}.dll
           ${{ github.workspace }}${{ env.API_PROJECT_NAME }}/bin/Release/${{ env.NET_FRAMEWORK_VERSION }}/MapForge.API.dll
           
     - run: |
@@ -104,7 +98,6 @@ jobs:
         files: |
           ${{ github.workspace }}/dependencies.zip
           ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/NWAPI/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.LABAPI_ASESEMBLY_NAME }}.dll
-          ${{ github.workspace }}${{ env.PROJECT_NAME }}/bin/EXILED/${{ env.NET_FRAMEWORK_VERSION }}/${{ env.EXILED_ASESEMBLY_NAME }}.dll
           ${{ github.workspace }}/PackageOutput/com.killers0992.mapforge.unitypackage
           ${{ github.workspace }}/releaseInfo.json
         tag_name: ${{ env.version }}
