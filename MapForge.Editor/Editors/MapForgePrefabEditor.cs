@@ -13,7 +13,6 @@ namespace MapForge.API.Editors
 
         private string[] allAssetBundleNames;
         private int selectedBundleIndex = 0;
-        private bool isCreatingNewBundle = false;
         private string newBundleName = "";
         private string currentBundleName = "";
         private Vector2 _prefabsScroll = Vector2.zero;
@@ -157,14 +156,12 @@ namespace MapForge.API.Editors
             }
             else if (selectedBundleIndex == allAssetBundleNames.Length - 1)
             {
-                isCreatingNewBundle = true;
                 EditorGUILayout.Space();
                 newBundleName = EditorGUILayout.TextField("New AssetBundle Name", newBundleName);
 
                 if (!string.IsNullOrEmpty(newBundleName) && GUILayout.Button("Create and Assign New AssetBundle"))
                 {
                     AssignAssetBundle(newBundleName);
-                    isCreatingNewBundle = false;
                 }
             }
             else if (selectedBundleIndex != 0)

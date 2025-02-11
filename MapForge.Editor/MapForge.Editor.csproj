@@ -4,12 +4,9 @@
 		<TargetFramework>net48</TargetFramework>
 		<PlatformTarget>x64</PlatformTarget>
 		<OutputType>Library</OutputType>
-
 		<LangVersion>latest</LangVersion>
-
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
-		<Configurations>Release</Configurations>
+		<Configurations>Debug;Release;EDITOR;NWAPI;EXILED;LABAPI</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>

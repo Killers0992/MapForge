@@ -3,7 +3,7 @@
         <TargetFramework>net48</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Configurations>EDITOR;NWAPI;EXILED</Configurations>
+        <Configurations>Debug;Release;EDITOR;NWAPI;EXILED;LABAPI</Configurations>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
 
@@ -11,8 +11,12 @@
 		<AssemblyName>MapForge-exiled</AssemblyName>
 	</PropertyGroup>
 	
-	<PropertyGroup Condition=" '$(Configuration)' != 'EXILED'">
+	<PropertyGroup Condition=" '$(Configuration)' == 'NWAPI'">
 		<AssemblyName>MapForge-nwapi</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'LABAPI'">
+		<AssemblyName>MapForge-labapi</AssemblyName>
 	</PropertyGroup>
 	
     <ItemGroup>
@@ -22,10 +26,13 @@
         <Reference Include="CommandSystem.Core">
             <HintPath>$(SL_REFERENCES)\CommandSystem.Core.dll</HintPath>
         </Reference>
+        <Reference Include="LabApi" Condition="'$(Configuration)' == 'LABAPI'">
+          <HintPath>$(SL_REFERENCES)\LabApi.dll</HintPath>
+        </Reference>
         <Reference Include="Mirror">
             <HintPath>$(SL_REFERENCES)\Mirror-Publicized.dll</HintPath>
         </Reference>
-        <Reference Include="PluginAPI" Condition="'$(Configuration)' != 'EXILED'">
+        <Reference Include="PluginAPI" Condition="'$(Configuration)' == 'NWAPI'">
             <HintPath>$(SL_REFERENCES)\PluginAPI.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.AssetBundleModule">
@@ -37,8 +44,7 @@
     </ItemGroup>
 	
     <ItemGroup>
-        <PackageReference Include="EXILED-OFFICIAL" Version="8.12.2" Condition="'$(Configuration)' == 'EXILED'" />
-        <PackageReference Include="ExMod.Exiled" Version="9.0.0-alpha.1" />
+        <PackageReference Include="ExMod.Exiled" Version="9.0.0-alpha.1" Condition="'$(Configuration)' == 'EXILED'"/>
         <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     </ItemGroup>
 

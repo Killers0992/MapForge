@@ -1,6 +1,5 @@
 ﻿using AdminToys;
 //using Dimensions;
-using Exiled.API.Features.Toys;
 using Interactables.Interobjects;
 using Interactables.Interobjects.DoorUtils;
 using InventorySystem.Items.Pickups;
@@ -12,6 +11,7 @@ using MapGeneration.Distributors;
 using MapGeneration.RoomConnectors;
 using Mirror;
 using UnityEngine;
+using static InventorySystem.Items.Firearms.Modules.CylinderAmmoModule;
 using static PlayerList;
 
 namespace MapForge
@@ -49,8 +49,11 @@ namespace MapForge
                     return Workstation;
 
                 default:
-                    if (!RoomConnectorDistributorSettings.RegisteredConnectors.TryGetValue(SpawnableRoomConnectorType.OpenHallwayClutterD, out var value))
-                        return null;
+                    foreach(SpawnableRoomConnector connector in RoomConnectorDistributorSettings.RegisteredConnectors)
+                    {
+                        if (connector.SpawnData.ConnectorType == SpawnableRoomConnectorType.HczBulkDoor)
+                            return connector.gameObject;
+                    }
 
                     return Workstation;
             }

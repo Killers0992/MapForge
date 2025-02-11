@@ -3,8 +3,8 @@
         <TargetFramework>net48</TargetFramework>
         <OutputType>Library</OutputType>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Configurations>Debug;Release;NWAPI;EXILED;EDITOR</Configurations>
-    </PropertyGroup>
+		<Configurations>Debug;Release;EDITOR;NWAPI;EXILED;LABAPI</Configurations>
+	</PropertyGroup>
 
     <ItemGroup>
         <Reference Include="UnityEngine.AssetBundleModule">
